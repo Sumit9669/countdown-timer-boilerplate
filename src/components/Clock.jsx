@@ -1,43 +1,52 @@
 import React from 'react';
 
 class Clock extends React.Component {
-   
-    formatTime(timeInSec) {   
-        let counter=setInterval(timer, 1000);
-        function timer(){
-            if(timeInSec>=0){
-        let timeInSeconds =timeInSec-- ;
-        console.log('there',timeInSeconds);
+    constructor(props) {
+        super(props);
+        var { timeInSeconds } = this.props;
+        this.state = {
+          seconds: timeInSeconds,
+        };
+      }
+      formatTime(timeInSeconds) {
         var seconds = timeInSeconds % 60;
         var minutes = Math.floor(timeInSeconds / 60);
-
+    
         if (seconds < 10) {
-            seconds = '0' + seconds;
+          seconds = '0' + seconds;
         }
-
+    
         if (minutes < 10) {
-            minutes = '0' + minutes;
+          minutes = '0' + minutes;
         }
-
+    
         return minutes + ':' + seconds;
-    }
-    }
-    return timer();
-    }
-
-    render() {
-         var sec = this.props.value;
-         console.log(sec)
-         console.log('where',this.timeInSec);
-        //Keep the classes name. Try to inject your code and do not remove existing code
+      }
+    
+      componentDidMount() {
+        this.timer = setInterval(() => {
+          this.setState({
+            seconds: this.state.seconds - 1,
+          });
+          if (this.state.seconds === 0) {
+            clearInterval(this.timer);
+          }
+        }, 1000);
+      }
+    
+      componentWillUnmount() {
+        clearInterval(this.timer);
+      }
+      render() {
+        //Keep the classes name. Try to injuect your code and do not remove existing code
         return (
-            <div className="clock">
-                <span className="clock-text">
-                {this.formatTime(parseInt(sec))}
-                </span>
-            </div>
+          <div className="clock">
+            <span className="clock-text">
+              {this.formatTime(this.state.seconds)}
+            </span>
+          </div>
         );
-    }
+      }
 }
 
 
