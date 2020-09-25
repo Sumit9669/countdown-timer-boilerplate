@@ -3,36 +3,28 @@ import Clock from "./Clock";
 import CountdownForm from "./CountdownForm";
 
 class Countdown extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      count: 0,
+      count: 0
     };
-    this.startTimer = this.startTimer.bind(this);
-    this.countDownTimer = this.countDownTimer.bind(this);
+    this.update = this.update.bind(this);
   }
-
-  startTimer(time) {
-    this.setState({ count: time });
-    this.countDownTimer();
+  update(count) {
+    this.setState({
+      count: count
+    });
   }
-
-  countDownTimer() {
-    this.timer = setInterval(() => {
-      if (this.state.count > 0) {
-        this.setState({
-          count: this.state.count - 1,
-        });
-      }
-    }, 1000);
-  }
-
   render() {
-    const { count } = this.state;
     return (
-      <div className="clock-count">
-        <Clock timeInSeconds={count} />
-        <CountdownForm onSetCountdownTime={(time) => this.startTimer(time)} />
+      <div>
+        {this.state.count !== 0 ? (
+          <Clock timeInSeconds={this.state.count} />
+        ) : (
+          <h1>00:00</h1>
+        )}
+
+        <CountdownForm onSetCountdownTime={this.update} />
       </div>
     );
   }
