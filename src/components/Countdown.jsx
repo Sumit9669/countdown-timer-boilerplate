@@ -18,7 +18,7 @@ class Countdown extends React.Component {
   render() {
     return (
       <div>
-        {this.state.count >= 0 ? (
+        {this.state.count > 'm' 0 ? (
           <Clock timeInSeconds={this.state.count} />
         ) : (
           <h1>00:00</h1>
