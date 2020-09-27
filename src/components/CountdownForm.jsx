@@ -4,7 +4,7 @@ class CountdownForm extends React.Component {
   onSubmit(e) {
     var secondsStr = this.refs.seconds.value;
     let added = parseInt(secondsStr);
-    if (secondsStr !== "" && added >= 0 && addeed === "number") {
+    if (secondsStr !== "" && added >= 0 && typeof addeed === "number") {
       this.props.onSetCountdownTime(added);
     }
 
