@@ -5,7 +5,7 @@ class Clock extends React.Component {
     super(props);
     var { timeInSeconds } = this.props;
     this.state = {
-      seconds: formatTime(timeInSeconds)
+      seconds: timeInSeconds
     };
   }
   formatTime(timeInSeconds) {
@@ -30,7 +30,7 @@ class Clock extends React.Component {
     return (
       <div className="clock">
         <span className="clock-text">
-          <h1>{this.state.seconds}</h1>
+          <h1>{this.formatTime(this.state.seconds)}</h1>
         </span>
       </div>
     );
