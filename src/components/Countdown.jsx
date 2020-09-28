@@ -9,8 +9,10 @@ class Countdown extends React.Component {
       count: 0
     };
     this.update = this.update.bind(this);
+    console.log(this.update);
   }
   update(count) {
+    console.log(count);
     this.setState({
       count: count
     });

@@ -47,7 +47,7 @@ class Clock extends React.Component {
       this.setState({
         seconds: this.state.seconds - 1
       });
-    }, 1001);
+    }, 1000);
   }
   componentWillUnmount() {
     clearInterval(this.myInterval);
